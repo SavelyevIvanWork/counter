@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <title>Counter</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 130px;
+            margin: 0 auto;
+            margin-top: 100px;
+        }
+
+        .number {
+            width: 100%;
+            padding: 10px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+            
+            
+
+        .btn {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id='root'></div>
+    <script type="text/babel">
+        class Counter extends React.Component {
+            state = {
+                counter: 0,
+            }
+            onChangeHandler = (e) => {
+                this.setState({ counter: e.currentTarget.value })
+            }
+            buttonPlusClickHandler = (e) => {
+                    this.setState({counter: ++this.state.counter})
+            }
+            buttonMinusClickHandler = (e) => {
+                    this.setState({counter: --this.state.counter})
+            }
+            render() {
+                const { counter } = this.state
+                return (
+                <div className='container'>
+                    <span className='number'>{counter}</span>
+                    <button onClick={this.buttonPlusClickHandler} type='button' className='btn counter__plus'>+</button>
+                    <button onClick={this.buttonMinusClickHandler} type='button' className='btn counter__minus'>-</button>
+                </div>
+                )
+            }
+        }
+
+        const App = () => {
+            return (
+                <React.Fragment>
+                    <Counter />
+                </React.Fragment>
+            )
+        }
+
+        ReactDOM.render(
+            <App />,
+            document.getElementById('root')
+        );
+    </script>
+</body>
+</html>
